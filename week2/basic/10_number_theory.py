@@ -127,14 +127,20 @@ def is_prime(n):
     # 3부터 sqrt(n)까지 홀수만 확인
     # 홀수를 왜 확인해? 소수가 되는정의?
     # 소수는 2이하면 안되고
-    if n < 2 and n % 2 == 0:
+    if n < 2:
+        return False
+
+    if n == 2:
+        return True
+
+    if n % 2 ==0:
         return False
 
     # for i in range(2,math.sqrt(n)):
     #     if n % i == 0:
     #         return False
 
-    for i in range(3, int(math.sqrt(n)), 2):
+    for i in range(3, int(math.sqrt(n) + 1), 2):
         if n % i == 0:
             return False
 
