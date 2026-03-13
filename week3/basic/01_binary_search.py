@@ -35,20 +35,42 @@ def binary_search(arr, target):
     """
     left = 0
     right = len(arr) - 1
+
+
+
     
     # TODO: left가 right보다 작거나 같을 때까지 반복
+    # left가 right작은게 당연한거 아닌가?
+    # 0 10
     ## 중간 인덱스 계산
     ## arr[mid]와 target 비교
     ## 같으면 mid 반환
     ## target이 더 크면 left = mid + 1
     ## target이 더 작으면 right = mid - 1
     pass
+
+    ## left, right, mid 는 배열의 인덱스
+    ## arr[left] arr[right] arr[mid] 배열의 값
+
+    while left <= right:
+    # 왜 범위가 1개일때는 생각하지 못했을까
+        mid = (left + right) // 2
+
+        if arr[mid] == target:
+            return mid
+
+        elif target < arr[mid]:
+                right = mid-1
+        elif target > arr[mid]:
+                left = mid+1
+
+
     
     return -1
 
 # 테스트 케이스
 if __name__ == "__main__":
-    # 테스트 케이스 1
+    #테스트 케이스 1
     arr1 = [1, 3, 5, 7, 9, 11, 13]
     target1 = 7
     result1 = binary_search(arr1, target1)
@@ -56,7 +78,7 @@ if __name__ == "__main__":
     print(f"찾는 값: {target1}")
     print(f"결과: 인덱스 {result1}")
     print()
-    
+
     # 테스트 케이스 2
     arr2 = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
     target2 = 14
@@ -65,7 +87,7 @@ if __name__ == "__main__":
     print(f"찾는 값: {target2}")
     print(f"결과: 인덱스 {result2}")
     print()
-    
+
     # 테스트 케이스 3: 없는 값
     arr3 = [1, 3, 5, 7, 9]
     target3 = 6
