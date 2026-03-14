@@ -32,20 +32,44 @@ def merge(arr, left, mid, right):
         mid: 왼쪽 부분의 끝 인덱스
         right: 오른쪽 부분의 끝 인덱스
     """
+    mid = (left + right) // 2
     # TODO: 왼쪽과 오른쪽 부분 배열을 임시 배열로 복사
     pass
-    
+    left_arr = arr[left:mid+1]
+    right_arr = arr[mid+1:right+1]
+
+    na = len(left_arr)
+    nb = len(right_arr)
+    pa, pb, pc = 0, 0, left
     # TODO: 두 배열을 병합
     pass
-    
-    
     # TODO: left_arr와 right_arr를 비교하며 작은 값을 arr에 복사
-    pass
-    
+    while na > pa and nb > pb:
+        if left_arr[pa] <= right_arr[pb]:
+            arr[pc] = left_arr[pa]
+            pa += 1
+        else:
+            arr[pc] = right_arr[pb]
+            pb += 1
+        pc += 1
+
     # TODO: 남은 원소들을 복사
     # left_arr에 남은 원소가 있으면 복사
+    while pa < na:
+        # c[pc]= left_arr[pa]
+        arr[pc] = left_arr[pa]
+        pa += 1
+        pc += 1
+
     # right_arr에 남은 원소가 있으면 복사
+    while pb < nb:
+        # c[pc] = right_arr[pb]
+        arr[pc] = right_arr[pb]
+        pb += 1
+        pc += 1
+
     pass
+
 
 def merge_sort_helper(arr, left, right):
     """
@@ -57,19 +81,25 @@ def merge_sort_helper(arr, left, right):
         right: 끝 인덱스
     """
     # TODO: base case - left가 right보다 작을 때만 정렬
+    if (left >= right):
+        return
     ## 중간 지점 계산
+    mid = (left + right) // 2
     ## 왼쪽 절반 재귀 정렬
+    merge_sort_helper(arr, left, mid)
     ## 오른쪽 절반 재귀 정렬
+    merge_sort_helper(arr, mid+1, right)
     ## 정렬된 두 절반을 병합
+    merge(arr,left,mid,right)
     pass
 
 def merge_sort(arr):
     """
     머지 정렬 메인 함수
-    
+
     Args:
         arr: 정렬할 배열
-    
+
     Returns:
         정렬된 배열
     """
